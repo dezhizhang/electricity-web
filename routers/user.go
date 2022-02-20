@@ -7,8 +7,10 @@ import (
 
 func InitUserRouter(Router *gin.RouterGroup) {
 	UserRouter := Router.Group("/user")
+	//用户控制器
+	UserController := controller.UserController{}
 	{
-		UserRouter.GET("/list", controller.UserController.GetUserList)
+		UserRouter.GET("/list",UserController.GetUserList)
 	}
 
 }
