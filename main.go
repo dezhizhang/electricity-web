@@ -1,20 +1,13 @@
 package main
 
 import (
-	"go.uber.org/zap"
-	"time"
+	"electricity-web/routers"
+	"github.com/gin-gonic/gin"
 )
 
 func main()  {
-	logger, _ := zap.NewProduction()
-	defer logger.Sync() // flushes buffer, if any
-	url := "https://www.baidu.com"
-	sugar := logger.Sugar()
-	sugar.Infow("failed to fetch URL",
-		// Structured context as loosely typed key-value pairs.
-		"url", url,
-		"attempt", 3,
-		"backoff", time.Second,
-	)
-	sugar.Infof("Failed to fetch URL: %s", url)
+	router := gin.Default()
+	//用户路由
+	ApiGroup := router.Group("/api/v1")
+	routers.InitUserRouter(ApiGroup)
 }
