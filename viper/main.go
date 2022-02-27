@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/fsnotify/fsnotify"
 	"github.com/spf13/viper"
 	"log"
 )
@@ -18,7 +19,13 @@ type ServerConfig struct {
 	MysqlConfig MysqlConfig `mapstructure:"mysql"`
 }
 
+func GetEnvInfo(env string) bool  {
+	viper.AutomaticEnv()
+	return viper.GetBool(env)
+}
+
 func main() {
+	fmt.Println(GetEnvInfo("GOVERSION"))
 	v := viper.New()
 	v.SetConfigFile("config/config.yaml")
 	err := v.ReadInConfig()
@@ -33,6 +40,19 @@ func main() {
 		log.Fatalln("解析失败")
 		return
 	}
+	
+	v.WatchConfig()
+	v.OnConfigChange(func(e fsnotify.Event) {
+		v.ReadInConfig()
+		err = v.Unmarshal(&serverConfig)
+		if err != nil {
+			log.Fatalln("err")
+			return
+		}
+
+		fmt.Println(serverConfig)
+
+	})
 
 	fmt.Println(v.Get("name"))
 	fmt.Println(v.Get("mysql"))
