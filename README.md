@@ -1,13 +1,6 @@
-package main
-
-import (
-	"fmt"
-	"github.com/spf13/viper"
-	"log"
-)
-
-
-
+# golang微服务
+### viper的使用
+```go
 type MysqlConfig struct {
 	Host string `mapstructure:"host"`
 	Port int    `mapstructure:"port"`
@@ -37,3 +30,4 @@ func main() {
 	fmt.Println(v.Get("name"))
 	fmt.Println(v.Get("mysql"))
 }
+```
