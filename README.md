@@ -13,7 +13,7 @@ type ServerConfig struct {
 
 func main() {
 	v := viper.New()
-	v.SetConfigFile("config/config.yaml")
+	
 	err := v.ReadInConfig()
 	if err != nil {
 		log.Fatalln("读取文件失败")

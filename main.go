@@ -8,10 +8,11 @@ import (
 
 func main()  {
 	port := 8080
-	//1.初始化日志
+
+	//2.初始化日志
 	initialize.InitLogger()
 
-	//2.初始化路由
+	//3.初始化路由
 	Router := initialize.Routers()
 
 	zap.S().Debugf("启动服务器,端口")

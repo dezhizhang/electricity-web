@@ -1,0 +1,4 @@
+  name:"electricity-web"
+  mysql:
+    host:"127.0.0.1"ß
+    port:3306
