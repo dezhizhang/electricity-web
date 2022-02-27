@@ -2,6 +2,7 @@ package controller
 
 import (
 	"context"
+	"electricity-web/model"
 	"electricity-web/proto"
 	"fmt"
 	"github.com/gin-gonic/gin"
@@ -81,5 +82,12 @@ func (u *UserController) GetUserList(ctx *gin.Context) {
 	}
 
 	ctx.JSON(http.StatusOK,result)
+}
 
+func (u *UserController) Login(ctx *gin.Context) {
+	var  user model.UserLogin
+	err := ctx.ShouldBindJSON(&user)
+	if err != nil {
+
+	}
 }
