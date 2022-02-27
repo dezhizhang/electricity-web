@@ -27,7 +27,7 @@ func GetEnvInfo(env string) bool  {
 func main() {
 	fmt.Println(GetEnvInfo("GOVERSION"))
 	v := viper.New()
-	v.SetConfigFile("config/config.yaml")
+
 	err := v.ReadInConfig()
 	if err != nil {
 		log.Fatalln("读取文件失败")
